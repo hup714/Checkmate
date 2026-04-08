@@ -787,7 +787,10 @@ const CreateMonitorPage = () => {
 									placeholder="0"
 									fullWidth
 									error={!!fieldState.error}
-									helperText={fieldState.error?.message ?? t("pages.createMonitor.form.escalation.helperText")}
+									helperText={
+										fieldState.error?.message ??
+										t("pages.createMonitor.form.escalation.helperText")
+									}
 									inputProps={{ min: 0 }}
 								/>
 							)}
@@ -804,7 +807,9 @@ const CreateMonitorPage = () => {
 									onChange={field.onChange}
 								>
 									<MenuItem value="">
-										<Typography>{t("pages.createMonitor.form.escalation.none")}</Typography>
+										<Typography>
+											{t("pages.createMonitor.form.escalation.none")}
+										</Typography>
 									</MenuItem>
 									{NotificationChannels.map((type: string) => (
 										<MenuItem
@@ -823,9 +828,10 @@ const CreateMonitorPage = () => {
 							defaultValue={defaults.escalationAddress}
 							render={({ field }) => {
 								const watchedType = watch("escalationType");
-								const filteredNotifications = notifications?.filter(
-									(notif: Notification) => notif.type === watchedType
-								) || [];
+								const filteredNotifications =
+									notifications?.filter(
+										(notif: Notification) => notif.type === watchedType
+									) || [];
 
 								const selectedNotification = notifications?.find(
 									(notif: Notification) => notif.id === field.value
@@ -853,17 +859,16 @@ const CreateMonitorPage = () => {
 											disabled={!watchedType || filteredNotifications.length === 0}
 											noOptionsText={
 												watchedType
-													? t(
-															"pages.createMonitor.form.escalation.noNotifications"
-														)
-													: t(
-															"pages.createMonitor.form.escalation.selectType"
-														)
+													? t("pages.createMonitor.form.escalation.noNotifications")
+													: t("pages.createMonitor.form.escalation.selectType")
 											}
 											renderOption={(props, option) => {
-												const notif = filteredNotifications.find(n => n.id === option);
+												const notif = filteredNotifications.find((n) => n.id === option);
 												return (
-													<li {...props} key={option}>
+													<li
+														{...props}
+														key={option}
+													>
 														{notif?.notificationName || option}
 													</li>
 												);
@@ -895,7 +900,10 @@ const CreateMonitorPage = () => {
 													justifyContent="space-between"
 													alignItems="center"
 												>
-													<Typography variant="subtitle2" fontWeight={600}>
+													<Typography
+														variant="subtitle2"
+														fontWeight={600}
+													>
 														{t(
 															"pages.createMonitor.form.escalation.selectedNotification"
 														)}
@@ -943,9 +951,7 @@ const CreateMonitorPage = () => {
 																color="textSecondary"
 																sx={{ minWidth: "80px" }}
 															>
-																{t(
-																	"pages.notifications.table.headers.destination"
-																)}:
+																{t("pages.notifications.table.headers.destination")}:
 															</Typography>
 															<Typography
 																variant="body2"
